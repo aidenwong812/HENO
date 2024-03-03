@@ -1,0 +1,422 @@
+[
+  {
+    "type": "constructor",
+    "name": "",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "_minterAgentImpl",
+        "internalType": "address"
+      },
+      {
+        "type": "address",
+        "name": "_zoraFeeRecipient",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "error",
+    "name": "FAILED_TO_SEND",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "FORWARD_CALL_FAILED",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "INSUFFICIENT_VALUE",
+    "inputs": [
+      {
+        "type": "uint256",
+        "name": "expectedValue",
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "actualValue",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "MINT_EXECUTION_FAILED",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "NOTHING_TO_WITHDRAW",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "SaleEnded",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "SaleHasNotStarted",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "UserExceedsMintLimit",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "user",
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "limit",
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "requestedAmount",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": []
+  },
+  {
+    "type": "error",
+    "name": "WrongValueSent",
+    "inputs": [],
+    "outputs": []
+  },
+  {
+    "type": "event",
+    "name": "Minted",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "target",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "value",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "tokensMinted",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "type": "address",
+        "name": "finder",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "type": "address",
+        "name": "minter",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "totalWithFees",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "zoraFee",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "finderFee",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MintedBatch",
+    "inputs": [
+      {
+        "type": "address[]",
+        "name": "targets",
+        "indexed": true,
+        "internalType": "address[]"
+      },
+      {
+        "type": "uint256[]",
+        "name": "values",
+        "indexed": false,
+        "internalType": "uint256[]"
+      },
+      {
+        "type": "uint256",
+        "name": "tokensMinted",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "type": "address",
+        "name": "finder",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "type": "address",
+        "name": "minter",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "totalWithFees",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "zoraFee",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "finderFee",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "anonymous": false
+  },
+  {
+    "type": "function",
+    "name": "agentAddress",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "recipient",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "agentImpl",
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "fee",
+    "inputs": [
+      {
+        "type": "uint256",
+        "name": "_mintValue",
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "_tokensMinted",
+        "internalType": "uint256"
+      },
+      {
+        "type": "address",
+        "name": "_finderAddress",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": "zoraFee",
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "finderReward",
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "requiredToSend",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "forwardCallFromAgent",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "_target",
+        "internalType": "address"
+      },
+      {
+        "type": "bytes",
+        "name": "_calldata",
+        "internalType": "bytes"
+      },
+      {
+        "type": "uint256",
+        "name": "_additionalValue",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "mint",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "_target",
+        "internalType": "address"
+      },
+      {
+        "type": "bytes",
+        "name": "_calldata",
+        "internalType": "bytes"
+      },
+      {
+        "type": "uint256",
+        "name": "_value",
+        "internalType": "uint256"
+      },
+      {
+        "type": "uint256",
+        "name": "_tokensMinted",
+        "internalType": "uint256"
+      },
+      {
+        "type": "address",
+        "name": "_finder",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "mintBatch",
+    "inputs": [
+      {
+        "type": "address[]",
+        "name": "_targets",
+        "internalType": "address[]"
+      },
+      {
+        "type": "bytes[]",
+        "name": "_calldatas",
+        "internalType": "bytes[]"
+      },
+      {
+        "type": "uint256[]",
+        "name": "_values",
+        "internalType": "uint256[]"
+      },
+      {
+        "type": "uint256",
+        "name": "_tokensMinted",
+        "internalType": "uint256"
+      },
+      {
+        "type": "address",
+        "name": "_finder",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "mintBatchWithoutFees",
+    "inputs": [
+      {
+        "type": "address[]",
+        "name": "_targets",
+        "internalType": "address[]"
+      },
+      {
+        "type": "bytes[]",
+        "name": "_calldatas",
+        "internalType": "bytes[]"
+      },
+      {
+        "type": "uint256[]",
+        "name": "_values",
+        "internalType": "uint256[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "withdraw",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "to",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "zoraFeeRecipient",
+    "inputs": [],
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  }
+]
