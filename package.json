@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ably-labs/react-hooks": "^2.1.0",
+    "@crossmint/client-sdk-react-ui": "^1.1.5",
     "@heroicons/react": "^2.0.16",
     "@hookform/resolvers": "^3.3.4",
     "@privy-io/react-auth": "^1.55.1",

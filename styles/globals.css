@@ -8,6 +8,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -68,7 +69,8 @@ a {
   }
 }
 
-.k-treeview-leaf:hover, .k-treeview-leaf.k-hover {
+.k-treeview-leaf:hover,
+.k-treeview-leaf.k-hover {
   background-color: #8c8c8c !important;
 }
 
@@ -76,7 +78,7 @@ a {
   color: #d2d2d2;
 }
 
-.k-treeview-leaf:hover > .k-treeview-leaf-text {
+.k-treeview-leaf:hover>.k-treeview-leaf-text {
   color: white !important;
 }
 
@@ -84,159 +86,36 @@ a {
   background-color: #8c8c8c !important;
 }
 
-.k-treeview-leaf.k-selected > .k-treeview-leaf-text {
+.k-treeview-leaf.k-selected>.k-treeview-leaf-text {
   color: white !important;
-}
-
-.Calendar.heno-calendar  {
-  min-height: auto !important;
-}
-
-.heno-calendar {
-  width: 100% !important;
-  background-color: #12121166 !important;
-  font-family: "DresdenElektronik" !important;
-  overflow: hidden !important;
-  padding-top: 0px !important;  /* remove calendar initial padding top because header background color is different with calendar bg color */
-}
-
-.heno-calendar .Calendar__monthSelectorAnimationWrapper, .Calendar__yearSelectorAnimationWrapper {
-  height: 82% !important;
-}
-
-.heno-calendar .Calendar__sectionWrapper {
-  min-height: 190px !important;
-}
-
-.heno-calendar .Calendar__weekDays {
-  padding-top: 10px; /* add padding top because of removed  initial padding top of calendar*/
-  font-size: 12px !important;
-  color: #8c8c8c;
-  font-family: "DresdenElektronik" !important;
-}
-
-.heno-calendar .Calendar__header {
-  color: #d2d2d2 !important;
-  background-color: #d2d2d20f !important;
-  padding: 10px !important;
-  border-radius: 0px !important;
-}
-
-.heno-calendar .Calendar__monthArrow {
-  background-image: url('/images/Calendar/arrow.png');
-  width: 24px !important;
-  height: 24px !important;
-}
-
-/* Month Selector & Year Selector width, background-color, color */
-.heno-calendar .Calendar__monthSelector, .Calendar__yearSelector {
-  width: 100% !important;
-  background-color: #121211 !important;
-  color: #d2d2d2 !important;
-  padding: 10px !important;
-  font-size: 12px !important;
-}
-
-/* Remove Fade CSS */
-.heno-calendar .Calendar__yearSelectorWrapper::after, .Calendar__yearSelectorWrapper::before {
-  visibility: hidden !important;
-}
-
-.heno-calendar .Calendar__yearText {
-  background-color: transparent !important;
-  padding: 0px !important;
-  padding-left: 10px !important;
-  position: relative;
-}
-
-.heno-calendar .Calendar__yearText:after {
-  content: ',';
-  position: absolute;
-  left: -5px;
-}
-
-.heno-calendar .Calendar__yearText.-activeBackground::after {
-  content: '';
-}
-
-.heno-calendar .Calendar__monthText, .Calendar__yearText {
-  background-color: transparent !important;
-  padding: 0px !important;
-  font-size: 12px !important;
-}
-
-/* items on selector hover css customization */
-.heno-calendar .Calendar__monthSelectorItemText:hover,  .Calendar__yearSelectorText:hover {
-  background-color: #A1EA04 !important;
-  color: #121212 !important;
-  border-radius: 40px !important;
-  font-size: 12px !important;
-}
-
-/* active item on selector css customization */
-.heno-calendar .Calendar__monthSelectorItemText, .Calendar__yearSelectorText {
-  font-size: 12px !important;
-}
-
-.heno-calendar .Calendar__monthSelectorItem.-active .Calendar__monthSelectorItemText, .Calendar__yearSelectorItem.-active .Calendar__yearSelectorText {
-  color: #A1EA04 !important;
-  background-color: #d2d2d20f !important;
-  border-radius: 40px !important;
-}
-
-/* remove all outline border effect including focus-visible effect */
-.heno-calendar .Calendar__day {
-  outline: none !important;
-  border: none !important;
-  font-size: 12px !important;
-}
-
-.heno-calendar .Calendar__day.-selected, .Calendar__day.-selectedStart, .Calendar__day.-selectedEnd {
-  background-color: transparent !important;
-  background-image: url('/images/Calendar/calendar-day.png') !important;
-  background-repeat: no-repeat !important;
-  background-size: contain !important;
-  background-position: center center !important;
-  border: none !important;
-  outline: none !important;
-  color: #A1EA04 !important;
-}
-
-/* calendar day hover css customization */
-.heno-calendar .Calendar__day:hover {
-  background-color: transparent !important;
-  color: #A1EA04 !important;
-  border-radius: 40px !important;
-  background-image: url('/images/Calendar/calendar-number.png') !important;
-  background-size: contain !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-}
-
-/* calendar day text customization */
-.heno-calendar .Calendar__day {
-  color: #d2d2d2 !important;
-  padding: 0px !important;
-}
-
-.heno-calendar .Calendar__section.-hiddenPrevious {
-  transform: translateX(-100%);
-}
-
-.heno-calendar .Calendar__section.-hiddenNext {
-  transform: translateX(100%);
-}
-
-.heno-calendar .Calendar__day.-disabled {
-  color: #414040 !important; 
-}
-
-.heno-calendar .Calendar__day.-disabled:hover {
-  color: #414040 !important; 
-  background-image: none !important;
-  cursor: not-allowed !important;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.heno-crossmint-button {
+  width: auto !important;
+  height: 30px !important;
+  background-color: #5b5b5b !important;
+  font-family: "DresdenElektronik" !important;
+  font-size: 16px !important;
+  font-weight: 100 !important;
+  border-radius: 0px !important;
+  padding: 0px;
+}
+
+.heno-crossmint-button img {
+  display: none !important;
+}
+
+.heno-crossmint-button span {
+  color: #d2d2d2 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .heno-crossmint-button {
+    font-size: 12px !important;
+    height: 24px !important;
+  }
 }

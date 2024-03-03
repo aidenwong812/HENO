@@ -30,7 +30,7 @@ const CollectAllButton = ({ className = "" }) => {
       onClick={handleClick}
       className={`${className} bg-darkgray py-[3px] px-[5px]`}
     >
-      Collect All
+      Collect with Crypto
     </button>
   )
 }
