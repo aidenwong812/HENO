@@ -8,7 +8,7 @@ const LogoutButton = ({ className = "" }) => {
       type="button"
       onTouchStart={logout}
       onClick={logout}
-      className={`${className} bg-darkgray py-[3px]`}
+      className={`${className} bg-darkgray py-[3px] hover:opacity-60 transition-opacity ease-in-out`}
     >
       Log Out
     </button>
