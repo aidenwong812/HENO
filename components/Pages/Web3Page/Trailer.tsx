@@ -4,7 +4,6 @@ import CollectAllButton from "@/components/CollectAllButton"
 import CrossmintButton from "@/components/CrossmintButton"
 import Media from "../../Core/Media"
 import ZoraDropPlayers from "./ZoraDropPlayers"
-import Buttons from "./Buttons"
 
 const Trailer = ({ isPopup = false }) => {
   const { authenticated } = usePrivy()
