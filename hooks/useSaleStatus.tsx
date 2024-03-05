@@ -2,7 +2,7 @@ import { Contract } from "ethers"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import abi from "../lib/abi/zora-drop.json"
 import getDefaultProvider from "../lib/getDefaultProvider"
-import { CHAIN_ID } from "../lib/consts"
+import { CHAIN_ID, ZORA_DROP_ADDRESS } from "../lib/consts"
 
 const useSaleStatus = () => {
   const [presaleActive, setPresaleActive] = useState<any>(null)
@@ -12,7 +12,7 @@ const useSaleStatus = () => {
   const [publicSalePrice, setPublicSalePrice] = useState("0")
   const [loading, setLoading] = useState(true)
   const cre8orsContract = useMemo(
-    () => new Contract(process.env.NEXT_PUBLIC_DROP_ADDRESS, abi, getDefaultProvider(CHAIN_ID)),
+    () => new Contract(ZORA_DROP_ADDRESS, abi, getDefaultProvider(CHAIN_ID)),
     [],
   )
 

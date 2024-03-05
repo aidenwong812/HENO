@@ -5,7 +5,7 @@ import { Multicall, ContractCallResults, ContractCallContext } from "ethereum-mu
 import axios from "axios"
 import abi from "../lib/abi/zora-drop.json"
 import getDefaultProvider from "../lib/getDefaultProvider"
-import { CHAIN_ID } from "../lib/consts"
+import { CHAIN_ID, ZORA_DROP_ADDRESS } from "../lib/consts"
 import getIpfsLink from "../lib/getIpfsLink"
 import getTokenIdsFromEvents from "../lib/getTokenUrisFromEvents"
 
@@ -14,7 +14,7 @@ const useBalanceOf = () => {
   const [loading, setLoading] = useState(true)
   const [balance, setBalance] = useState(null)
   const dropContract = useMemo(
-    () => new Contract(process.env.NEXT_PUBLIC_DROP_ADDRESS, abi, getDefaultProvider(CHAIN_ID)),
+    () => new Contract(ZORA_DROP_ADDRESS, abi, getDefaultProvider(CHAIN_ID)),
     [],
   )
   const [cameraCount, setCameraCount] = useState(0)
@@ -86,13 +86,13 @@ const useBalanceOf = () => {
     const contractCallContext: ContractCallContext[] = [
       {
         reference: "ownerOfCalls",
-        contractAddress: process.env.NEXT_PUBLIC_DROP_ADDRESS,
+        contractAddress: ZORA_DROP_ADDRESS,
         abi,
         calls: ownerOfCalls,
       },
       {
         reference: "tokenURICalls",
-        contractAddress: process.env.NEXT_PUBLIC_DROP_ADDRESS,
+        contractAddress: ZORA_DROP_ADDRESS,
         abi,
         calls: tokenUriCalls,
       },

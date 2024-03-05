@@ -1,11 +1,9 @@
-import { BASE_MINTER, CHAIN_ID, IS_TESTNET, SEPOLIA_MINTER } from "@/lib/consts"
+import { BASE_MINTER, CHAIN_ID, IS_TESTNET, SEPOLIA_MINTER, ZORA_DROP_ADDRESS } from "@/lib/consts"
 import { useCollection } from "onchain-magic"
 
 const useZoraDropData = () => {
-  const zoraDropAddress = process.env.NEXT_PUBLIC_DROP_ADDRESS
-
   const { drops, priceValues, collectAll } = useCollection({
-    collectionAddress: zoraDropAddress,
+    collectionAddress: ZORA_DROP_ADDRESS,
     chainId: CHAIN_ID,
     minterOverride: IS_TESTNET ? SEPOLIA_MINTER : BASE_MINTER,
   })

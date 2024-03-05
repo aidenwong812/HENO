@@ -1,31 +1,36 @@
+import useConnectedWallet from "@/hooks/useConnectedWallet"
+import { BASE_MINTER, CHAIN_ID, IS_TESTNET, SEPOLIA_MINTER, ZORA_DROP_ADDRESS } from "@/lib/consts"
+import { useWeb3Drops } from "@/providers/Web3Provider"
 import { CrossmintPayButton } from "@crossmint/client-sdk-react-ui"
-import { ethers } from "ethers"
-import { useAccount } from "wagmi"
+import { BigNumber } from "ethers"
+import { useUniversalMinter } from "onchain-magic"
+import { formatEther } from "viem"
 
 const CrossmintButton = () => {
-  const totalPriceEth = ethers.utils.formatEther("150000")
-  const zoraDropAddress = process.env.NEXT_PUBLIC_DROP_ADDRESS
-  const { address } = useAccount()
-
-  const mintConfig = {
-    type: "erc-721",
-    _targetERC721ContractAddress: zoraDropAddress,
-    totalPrice: totalPriceEth,
-    quantity: 1,
-    to: address,
-  }
+  const { connectedWallet } = useConnectedWallet()
+  const { drops, priceValues } = useWeb3Drops()
+  const { universalMinter } = useUniversalMinter(CHAIN_ID)
+  const totalValue = priceValues.reduce(
+    (total: any, value: any) => total.add(BigNumber.from(value || "0")),
+    BigNumber.from(0),
+  )
 
   return (
     <CrossmintPayButton
-      projectId={process.env.NEXT_PUBLIC_CROSSMINT_PROJECT_ID}
       collectionId={process.env.NEXT_PUBLIC_CROSSMINT_COLLECTION_ID}
+      projectId={process.env.NEXT_PUBLIC_CROSSMINT_PROJECT_ID}
+      mintConfig={{
+        totalPrice: totalValue && formatEther(totalValue),
+        _universalMinter: universalMinter,
+        _target: ZORA_DROP_ADDRESS,
+        _value: priceValues[0],
+        _tokenCount: drops.length,
+        _referral: process.env.NEXT_PUBLIC_MINT_REFERRAL,
+        _minter: IS_TESTNET ? SEPOLIA_MINTER : BASE_MINTER,
+      }}
+      mintTo={connectedWallet}
+      checkoutProps={{ paymentMethods: ["fiat"] }}
       environment="staging"
-      getButtonText={(connecting) => (connecting ? "Connecting" : `Collect with Credit`)}
-      mintConfig={mintConfig}
-      paymentMethod="fiat"
-      className="heno-crossmint-button"
-      mintTo={address}
-      successCallbackURL={typeof window !== "undefined" && `${window.location.origin}/web3`}
     />
   )
 }
